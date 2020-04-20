@@ -2,7 +2,9 @@ import React from 'react';
 
 function CreateAccountForm(){
     return (
-        <div></div>
+        <div>
+            <h1>Create Account Form</h1>
+        </div>
     )
 }
 

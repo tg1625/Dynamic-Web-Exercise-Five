@@ -1,8 +1,12 @@
 import React from 'react';
+import UserProfileComponents from '../components/UserProfileComponents';
 
 function UserProfile(){
     return (
-        <div></div>
+        <div>
+            <h1>User Profile</h1>
+            <UserProfileComponents/>
+        </div>
     )
 }
 

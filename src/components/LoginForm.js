@@ -2,7 +2,9 @@ import React from 'react';
 
 function LoginForm(){
     return (
-        <div></div>
+        <div>
+            <h1>Login Form</h1>
+        </div>
     )
 }
 
