@@ -1,0 +1,16 @@
+.siteWrapper{
+    padding:10%;
+}
+
+
+.forms{
+    max-width:500px;
+    display:flex;
+    flex-direction: column;
+    margin:40px auto;
+}
+
+.forms input{
+    margin-bottom:10px;
+    line-height: 2em;
+}

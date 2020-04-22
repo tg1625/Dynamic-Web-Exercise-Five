@@ -1,11 +1,11 @@
 import React from 'react';
 import CreateAccountForm from '../components/CreateAccountForm';
 
-function CreateAccount(){
+function CreateAccount({CreateAccountFunction}){
     return (
         <div>
             <h1>Create Account</h1>
-            <CreateAccountForm/>
+            <CreateAccountForm CreateAccountFunction={CreateAccountFunction}/>
         </div>
     )
 }

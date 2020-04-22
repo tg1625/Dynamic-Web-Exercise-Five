@@ -3,7 +3,7 @@ import React from 'react';
 function UserProfileComponents(){
     return (
         <div>
-            <h1>User Profile Components</h1>
+            <h1>User Profile Component</h1>
         </div>
     )
 }

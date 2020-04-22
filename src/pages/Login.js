@@ -1,11 +1,11 @@
 import React from 'react';
 import LoginForm from '../components/LoginForm';
 
-function Login(){
+function Login({LoginFunction}){
     return (
         <div className="login">
             <h1>Login</h1>
-            <LoginForm />
+            <LoginForm LoginFunction={LoginFunction} />
         </div>
     )
 }
