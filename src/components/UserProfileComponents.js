@@ -1,9 +1,9 @@
 import React from 'react';
 
-function UserProfileComponents(){
+function UserProfileComponents({email}){
     return (
         <div>
-            <h1>User Profile Component</h1>
+            <p>User is logged in as {email}</p>
         </div>
     )
 }

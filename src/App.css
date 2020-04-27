@@ -14,3 +14,16 @@
     margin-bottom:10px;
     line-height: 2em;
 }
+
+.header_nav{
+    display:flex;
+    max-width: width 1080px;
+    margin:0 auto;
+
+}
+
+.header_nav a{
+    color:#444;
+    display:block;
+    margin:10px;
+}

@@ -3,9 +3,11 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
-  userParams
+  Redirect
 } from "react-router-dom";
+
+//components
+import Header from './components/Header';
 //pages
 import UserProfile from './pages/UserProfile';
 import Login from './pages/Login';
@@ -24,7 +26,9 @@ import "firebase/firestore";
 
 function App() {
 
-  const [loggedIn, SetLoggedIn] = useState(false); //
+  const [loggedIn, SetLoggedIn] = useState(false); //checking if users are logged in
+  const [loading, SetLoading] = useState(true); // loading state so we don't display info before its ready 
+  const [userInfo, SetUserInfo] = useState({});
 
   // Your web app's Firebase configuration
   const firebaseConfig = {
@@ -50,6 +54,24 @@ function App() {
       });
     
   }, [firebaseConfig]);
+
+  //Check if the user is logged in
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged(function(user) { //runs everytime the auth state is changed
+      console.log(user);
+      if (user) {
+        // User is signed in.
+        SetLoggedIn(true);
+        SetUserInfo(user);
+      } else {
+        // No user is signed in.
+        SetLoggedIn(false);
+        SetUserInfo({});
+      }
+      //now we know what to load, so loading is false 
+      SetLoading(false);
+    });
+  } ,[]);
 
 
   //Login
@@ -104,20 +126,33 @@ function App() {
       });
   }
 
+  console.log("What are we?", loggedIn);
+
   return (
     <div className="siteWrapper">
+
+      <Header LogOutFunction={LogoutFunction} isLoggedIn={loggedIn}/>
       <Router>
         <Switch>
           {/* exact here makes it so the path thing doesnt cascade */}
           <Route exact path="/">
-              <UserProfile LogoutFunction={LogoutFunction}/>
+              {/*If not loading, can see the different pages */}
+              {
+              !loggedIn ? (<Redirect to="login"/>) : (<UserProfile userInfo={userInfo}/>)
+              //if not logged in log in, if logged in go to profile
+              }
           </Route>
           <Route exact path="/login">
-              <Login LoginFunction= {LoginFunction}/>
+            { 
+            !loggedIn ? (<Login LoginFunction= {LoginFunction}/>) : (<Redirect to="/"/>)
+            }
           </Route>
           <Route exact path="/create-account">
-              <CreateAccount CreateAccountFunction={CreateAccountFunction}/>
+            {
+            !loggedIn ? (<CreateAccount CreateAccountFunction={CreateAccountFunction}/>) : (<Redirect to="/"/>)
+            }
           </Route>
+          
         </Switch>
       </Router>
     </div>
